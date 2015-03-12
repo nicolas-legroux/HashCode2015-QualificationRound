@@ -42,10 +42,12 @@ public class DataCenter {
 		while (compt<=nb_indisp){
 			Position pos = new Position();
 			String[] temp=ldata.split(" ");
-			pos.emplacement=Integer.parseInt(temp[0]);
-			pos.rangee=Integer.parseInt(temp[1]);
+			pos.rangee=Integer.parseInt(temp[0]);
+			pos.emplacement=Integer.parseInt(temp[1]);
 			
 			indisponibles.add(pos);
+			//Ajout de l'emplacement pour la rangée
+			rangees.get(pos.rangee).addIndisponible(pos.emplacement);
 		}
 		while (!ldata.isEmpty()){
 			Server serv = new Server();
