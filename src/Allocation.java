@@ -1,6 +1,7 @@
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -9,6 +10,13 @@ public class Allocation {
 	DataCenter problem;
 	// null pour les serveurs inutilisés.
 	List<Emplacement> allocation;
+	
+	Allocation(DataCenter center) {
+		problem = center;
+		allocation = new LinkedList<Emplacement>();
+		for (int i = 0 ; i < center.nb_servers ; ++i)
+			allocation.add(null);
+	}
 	
 	void save(String filename) {
 		try {
