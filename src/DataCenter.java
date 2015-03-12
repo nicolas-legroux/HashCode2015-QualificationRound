@@ -42,6 +42,8 @@ public class DataCenter {
 			String[] temp = ldata.split(" ");
 			Position pos = new Position(Integer.parseInt(temp[0]), Integer.parseInt(temp[1]));
 			indisponibles.add(pos);
+			//Ajout de l'emplacement pour la rangée
+			rangees.get(pos.rangee).addIndisponible(pos.emplacement);
 		}
 		
 		for (int i = 0 ; i < nb_servers ; ++i) {
