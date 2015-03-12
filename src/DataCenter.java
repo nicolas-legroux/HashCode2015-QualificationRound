@@ -67,6 +67,7 @@ public class DataCenter {
 				else
 					System.out.print(".");
 			}
+			System.out.print(" " + String.valueOf(indisp.size()));
 			System.out.print("\n");
 		}
 	}
