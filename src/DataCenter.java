@@ -7,5 +7,8 @@ public class DataCenter {
 	int height;
 	List<Position> indisponibles;
 	List<Server> servers;
+	
+	void load(String filename) {
+	}
 
 }
