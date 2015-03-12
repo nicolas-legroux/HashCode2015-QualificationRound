@@ -23,6 +23,9 @@ public class Repartition {
 		Allocation allocation = new Allocation();
 		
 		Collections.sort(center.servers, new CompareServers());
+		for (Server s : center.servers) {
+			// Place le serveur
+		}
 		
 		return allocation;
 	}
