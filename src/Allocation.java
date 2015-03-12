@@ -21,6 +21,7 @@ public class Allocation {
 	void save(String filename) {
 		try {
 		    BufferedWriter file = new BufferedWriter(new FileWriter(filename));
+			System.out.println("Nbre d'emplacements : " + allocation.size());
 		    for (Emplacement e : allocation) {
 		    	// Serveur non utilisé
 		    	String line = "x";
