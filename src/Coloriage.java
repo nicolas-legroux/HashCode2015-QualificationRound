@@ -1,5 +1,6 @@
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.LinkedList;
 
 
 /*
@@ -37,10 +38,15 @@ public class Coloriage {
 	}
 	
 	static void scoredColoriage(Allocation allocation) {
-		//int[] scores = new int[allocation.problem.nb_groups];
+		int[] scores = new int[allocation.problem.nb_groups];
 		int[] total = new int[allocation.problem.nb_groups];
 		int[] delta = new int[allocation.problem.nb_groups];
 		int[][] contains = new int[allocation.problem.nb_groups][allocation.problem.nb_rangee];
+		
+		LinkedList<LinkedList<Server> > groups = new LinkedList<LinkedList<Server> >();
+		for (int i = 0 ; i < allocation.problem.nb_groups ; ++i) {
+			groups.add(new LinkedList<Server>());
+		}
 
 		Collections.sort(allocation.problem.servers, new CompareServers());
 		for (Server server : allocation.problem.servers) {
@@ -51,21 +57,50 @@ public class Coloriage {
 					if (contains[i][e.position.rangee] < contains[best][e.position.rangee])
 						best = i;
 					else if (contains[i][e.position.rangee] == contains[best][e.position.rangee]) {
+						if (scores[i] < scores[best])
+							best = i;
+						/*
 						int score_i = total[i] - Math.max(delta[i], server.capacite);
 						int score_best = total[best] - Math.max(delta[best], server.capacite);
 						if (score_i < score_best)
 							best = i;
+						//*/
 					}
 				}
 			
+				groups.get(best).add(server);
 				e.groupe = best;
 				total[best] += server.capacite;
 				if (server.capacite > delta[best])
 					delta[best] = server.capacite;
-				//scores[best] = total[best] - delta[best];
+				scores[best] = total[best] - delta[best];
 				contains[best][e.position.rangee] += 1;
 			}
 		}
+		
+		/*
+		int best = 0;
+		int worse = 0;
+		for (int i = 0 ; i < allocation.problem.nb_groups ; ++i) {
+			Collections.sort(groups.get(i), new CompareServers());
+			
+			if (scores[i] < scores[worse])
+				worse = i;
+			if (scores[i] > scores[best])
+				best = i;
+		}
+		
+		int diff = scores[best] - scores[worse];
+		
+		for (int j = 0 ; j < groups.get(best).size() ; ++j) {
+			int score = ;
+		}
+		
+		
+		for (int group = 0 ; group < allocation.problem.nb_groups ; ++group) {
+			
+		}
+		//*/
 	}
 
 }

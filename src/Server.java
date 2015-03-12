@@ -5,11 +5,7 @@ public class Server {
 		this.id = id;
 		this.taille = taille;
 		this.capacite = capacite;
-		score = capacite / (double)taille;
-		/*
-		if (capacite > 80)
-			score = 0;
-		//*/
+		score = capacite / Math.pow(taille, 1.5);
 	}
 	
 	int id;
