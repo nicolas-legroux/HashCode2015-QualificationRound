@@ -36,7 +36,7 @@ public class DataCenter {
 		
 		//Construire les rangées
 		for(int i=0; i<nb_rangee; i++){
-			Rangee rangee = new Rangee(i);
+			Rangee rangee = new Rangee(i, nb_empl);
 			rangees.add(rangee);
 		}
 		
