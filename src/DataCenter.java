@@ -35,26 +35,21 @@ public class DataCenter {
 		for(int i=0; i<nb_rangee; i++){
 			Rangee rangee = new Rangee(i);
 			rangees.add(rangee);
-		}		
+		}
 		
-		ldata=data.readLine();
-		int compt=1;
-		while (compt<=nb_indisp){
-			Position pos = new Position();
-			String[] temp=ldata.split(" ");
-			pos.emplacement=Integer.parseInt(temp[0]);
-			pos.rangee=Integer.parseInt(temp[1]);
-			
+		for (int i = 0 ; i < nb_indisp ; ++i) {
+			ldata = data.readLine();
+			String[] temp = ldata.split(" ");
+			Position pos = new Position(Integer.parseInt(temp[0]), Integer.parseInt(temp[1]));
 			indisponibles.add(pos);
 		}
-		while (!ldata.isEmpty()){
-			Server serv = new Server();
-			String[] temp=ldata.split(" ");
-			serv.taille=Integer.parseInt(temp[0]);
-			serv.capacite=Integer.parseInt(temp[1]);
-			
+		
+		for (int i = 0 ; i < nb_servers ; ++i) {
+			ldata = data.readLine();
+			String[] temp = ldata.split(" ");
+			Server serv = new Server(Integer.parseInt(temp[0]), Integer.parseInt(temp[1]));
 			servers.add(serv);
-		}	
+		}
 		
 		data.close();
 	}
