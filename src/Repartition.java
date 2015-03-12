@@ -51,6 +51,8 @@ public class Repartition {
 			System.out.print("\n");
 		}
 		
+		center.print();
+		
 		return allocation;
 	}
 	

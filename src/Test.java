@@ -12,6 +12,7 @@ public class Test {
 			center.load("data/dc.in");
 			center.print();
 			Allocation alloc = Repartition.calcule(center);
+			alloc.save("results/result.out");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

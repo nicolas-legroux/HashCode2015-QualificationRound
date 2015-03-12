@@ -7,9 +7,9 @@ import java.util.*;
 
 public class Rangee {
 	private int id;
+	private int taille;
 	/*
 	private int group = -1;	
-	private int taille;
 	//*/
 	private SortedSet<Integer> indisponibles;
 	//public int[] repartitionServeurs;
@@ -18,8 +18,8 @@ public class Rangee {
 	Rangee(int _id, int _taille){
 		id = _id;	
 		indisponibles = new TreeSet<Integer>();
-		/*
 		taille = _taille;
+		/*
 		repartitionServeurs = new int[taille];
 		
 		for(int i=0; i<taille; i++){
@@ -47,6 +47,7 @@ public class Rangee {
 			slots.add(new Slot(new Position(id, current), i - current));
 			current = i + 1;
 		}
+		slots.add(new Slot(new Position(id, current), taille - current));
 	}
 	
 	/*

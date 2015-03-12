@@ -80,9 +80,17 @@ public class DataCenter {
 			}
 			System.out.print(" " + String.valueOf(indisp.size()));
 			
+			int capacite = 0;
+			int serverCount = 0;
 			for (Slot s : r.slots) {
+				for (Server server : s.servers) {
+					capacite += server.capacite;
+					++serverCount;
+				}
 				System.out.print(" (" + String.valueOf(s.position.rangee) + ", " + String.valueOf(s.position.emplacement) + ", " + String.valueOf(s.taille) + ")");
 			}
+			System.out.print("\n");
+			System.out.print("(capacity = " + String.valueOf(capacite) + ", server count = " + String.valueOf(serverCount) + ")");
 			System.out.print("\n");
 		}
 
