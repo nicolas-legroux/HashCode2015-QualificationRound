@@ -4,7 +4,7 @@ import java.util.List;
 public class Allocation {
 	
 	DataCenter problem;
-	List<Position> allocation;
+	List<Emplacement> allocation;
 	
 	void save(String filename) {
 		;
