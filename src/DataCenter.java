@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
@@ -16,6 +15,11 @@ public class DataCenter {
 	int nb_servers;
 	List<Server> servers;
 	List<Rangee> rangees = new LinkedList<Rangee>();
+	
+	public DataCenter() {
+		indisponibles = new LinkedList<Position>();
+		servers = new LinkedList<Server>();
+	}
 	
 	void load(String filename) throws IOException {
 		BufferedReader data = new BufferedReader(new FileReader(filename));
@@ -50,7 +54,9 @@ public class DataCenter {
 			serv.capacite=Integer.parseInt(temp[1]);
 			
 			servers.add(serv);
-		}		
+		}	
+		
+		data.close();
 	}
 
 }
