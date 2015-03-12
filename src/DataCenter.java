@@ -52,7 +52,7 @@ public class DataCenter {
 		for (int i = 0 ; i < nb_servers ; ++i) {
 			ldata = data.readLine();
 			String[] temp = ldata.split(" ");
-			Server serv = new Server(Integer.parseInt(temp[0]), Integer.parseInt(temp[1]));
+			Server serv = new Server(i, Integer.parseInt(temp[0]), Integer.parseInt(temp[1]));
 			servers.add(serv);
 			tailleTotale += serv.taille;
 		}
@@ -72,6 +72,7 @@ public class DataCenter {
 				else
 					System.out.print(".");
 			}
+			System.out.print(" " + String.valueOf(indisp.size()));
 			System.out.print("\n");
 		}
 	}
