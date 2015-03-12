@@ -32,6 +32,8 @@ public class DataCenter {
 		nb_groups=Integer.parseInt(ParsedData[3]);
 		nb_servers=Integer.parseInt(ParsedData[4]);
 		
+		int tailleTotale = 0;
+		
 		//Construire les rangées
 		for(int i=0; i<nb_rangee; i++){
 			Rangee rangee = new Rangee(i);
@@ -52,7 +54,10 @@ public class DataCenter {
 			String[] temp = ldata.split(" ");
 			Server serv = new Server(Integer.parseInt(temp[0]), Integer.parseInt(temp[1]));
 			servers.add(serv);
+			tailleTotale += serv.taille;
 		}
+		
+		System.out.println("Taille totale des serveurs : " + tailleTotale);
 		
 		data.close();
 	}
