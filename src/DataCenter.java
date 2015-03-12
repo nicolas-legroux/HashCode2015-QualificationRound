@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -14,6 +15,7 @@ public class DataCenter {
 	int nb_groups;
 	int nb_servers;
 	List<Server> servers;
+	List<Rangee> rangees = new LinkedList<Rangee>();
 	
 	void load(String filename) throws IOException {
 		BufferedReader data = new BufferedReader(new FileReader(filename));
@@ -24,6 +26,12 @@ public class DataCenter {
 		nb_indisp=Integer.parseInt(ParsedData[2]);
 		nb_groups=Integer.parseInt(ParsedData[3]);
 		nb_servers=Integer.parseInt(ParsedData[4]);
+		
+		//Construire les rangées
+		for(int i=0; i<nb_rangee; i++){
+			Rangee rangee = new Rangee(i);
+			rangees.add(rangee);
+		}		
 		
 		ldata=data.readLine();
 		int compt=1;
@@ -43,9 +51,6 @@ public class DataCenter {
 			
 			servers.add(serv);
 		}		
-		
-		
-		
 	}
 
 }
