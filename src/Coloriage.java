@@ -1,8 +1,24 @@
+import java.util.Collections;
+import java.util.Comparator;
+
 
 /*
  * Calcule un coloriage des serveurs à partir d'une répartition.
  */
 public class Coloriage {
+	
+	static class CompareServers implements Comparator<Server> {
+        public int compare(Server server1, Server server2)
+        {
+        	double diff = server2.capacite - server1.capacite;
+        	if (diff > 0)
+        		return 1;
+        	else if (diff < 0)
+        		return -1;
+        	
+        	return 0;
+        }
+    }
 	
 	static void calcule(Allocation allocation) {
 		//naiveColoriage(allocation);
@@ -22,20 +38,25 @@ public class Coloriage {
 	
 	static void scoredColoriage(Allocation allocation) {
 		int[] scores = new int[allocation.problem.nb_groups];
-		
-		for (Slot slot : allocation.problem.allSlots) {
-			for (Server server : slot.servers) {
+		int[][] contains = new int[allocation.problem.nb_groups][allocation.problem.nb_rangee];
+
+		Collections.sort(allocation.problem.servers, new CompareServers());
+		for (Server server : allocation.problem.servers) {
+			Emplacement e = allocation.allocation.get(server.id);
+			if (e != null) {
 				int best = 0;
 				for (int i = 1 ; i < allocation.problem.nb_groups ; ++i) {
-					if (scores[i] < scores[best])
+					if (contains[i][e.position.rangee] < contains[best][e.position.rangee])
+						best = i;
+					else if (contains[i][e.position.rangee] == contains[best][e.position.rangee] && scores[i] < scores[best])
 						best = i;
 				}
-				
-				allocation.allocation.get(server.id).groupe = best;
+			
+				e.groupe = best;
 				scores[best] += server.capacite;
+				contains[best][e.position.rangee] += 1;
 			}
 		}
-		System.out.println("naiveColoriage done");
 	}
 
 }

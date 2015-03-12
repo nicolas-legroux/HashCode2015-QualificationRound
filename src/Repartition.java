@@ -17,8 +17,9 @@ public class Repartition {
         		return 1;
         	else if (diff < 0)
         		return -1;
-        	
-        	double diffSize = server2.taille - server1.taille;
+
+        	//double diffSize = server2.taille - server1.taille;
+        	double diffSize = server1.taille - server2.taille;
         	if (diffSize > 0)
         		return 1;
         	else if (diffSize < 0)
