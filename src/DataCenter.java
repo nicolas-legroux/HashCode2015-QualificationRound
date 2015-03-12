@@ -3,6 +3,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 
 public class DataCenter {
@@ -58,8 +59,13 @@ public class DataCenter {
 	
 	void print() {
 		for (int i = 0 ; i < nb_rangee ; ++i) {
+			Rangee r = rangees.get(i);
+			Set<Integer> indisp = r.getIndisponibles();
 			for (int j = 0 ; j < nb_empl ; ++j) {
-				System.out.print(".");
+				if (indisp.contains(j))
+					System.out.print("*");
+				else
+					System.out.print(".");
 			}
 			System.out.print("\n");
 		}
