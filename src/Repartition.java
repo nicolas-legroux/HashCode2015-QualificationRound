@@ -46,6 +46,7 @@ public class Repartition {
 				
 				allocation.allocation.set(server.id, new Emplacement(pos));
 				scores[pos.rangee] += server.capacite;
+				center.rangees.get(pos.rangee).addServer(server, pos.emplacement);
 			}
 			
 			System.out.print("\n");

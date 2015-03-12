@@ -18,7 +18,7 @@ public class Slot {
 		taille = taille - server.taille;
 		
 		Position result = current;
-		current = new Position(position.rangee, position.emplacement + server.taille);
+		current = new Position(current.rangee, current.emplacement + server.taille);
 		return result;
 	}
 

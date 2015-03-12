@@ -73,11 +73,15 @@ public class DataCenter {
 			Rangee r = rangees.get(i);
 			Set<Integer> indisp = r.getIndisponibles();
 			for (int j = 0 ; j < nb_empl ; ++j) {
-				if (indisp.contains(j))
+				int value = r.repartitionServeurs[j];
+				if (value == -2)
 					System.out.print("*");
-				else
+				else if (value == -1)
 					System.out.print(".");
+				else
+					System.out.print("/");
 			}
+			System.out.print(" [" + i + "]");
 			System.out.print(" " + String.valueOf(indisp.size()));
 			
 			int capacite = 0;

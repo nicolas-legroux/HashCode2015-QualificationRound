@@ -8,36 +8,31 @@ import java.util.*;
 public class Rangee {
 	private int id;
 	private int taille;
-	/*
-	private int group = -1;	
-	//*/
+	private int group = -1;
 	private SortedSet<Integer> indisponibles;
-	//public int[] repartitionServeurs;
+	public int[] repartitionServeurs;
 	public List<Slot> slots;
 	
 	Rangee(int _id, int _taille){
 		id = _id;	
 		indisponibles = new TreeSet<Integer>();
 		taille = _taille;
-		/*
 		repartitionServeurs = new int[taille];
 		
 		for(int i=0; i<taille; i++){
 			//emplacement libre
 			repartitionServeurs[i] = -1;
 		}
-		//*/
 
 		slots = new LinkedList<Slot>();
 	}
-	/*
+
 	void setGroup(int _group){
 		group = _group;
 	}
-	//*/
 	
 	void addIndisponible(int i){
-		//repartitionServeurs[i] = -2;
+		repartitionServeurs[i] = -2;
 		indisponibles.add(i);		
 	}
 	
@@ -50,7 +45,6 @@ public class Rangee {
 		slots.add(new Slot(new Position(id, current), taille - current));
 	}
 	
-	/*
 	int getId(){
 		return id;
 	}
@@ -63,7 +57,7 @@ public class Rangee {
 		//Check that it is legal 
 		for(int i=0; i<s.taille; i++){
 			if(repartitionServeurs[emplacement+i] != -1){
-				System.out.println("Impossible de placer un serveur à cet emplacement !");
+				System.out.println("Impossible de placer un serveur à l'emplacement " + (emplacement+i));
 				return false;
 			}
 		}
@@ -75,7 +69,6 @@ public class Rangee {
 		
 		return true;
 	}
-	//*/
 	
 	Set<Integer> getIndisponibles(){
 		return indisponibles;
