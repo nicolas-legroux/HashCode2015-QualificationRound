@@ -16,6 +16,7 @@ public class DataCenter {
 	int nb_servers;
 	List<Server> servers;
 	List<Rangee> rangees = new LinkedList<Rangee>();
+	List<Slot> allSlots = new LinkedList<Slot>();
 	
 	public DataCenter() {
 		indisponibles = new LinkedList<Position>();
@@ -36,7 +37,7 @@ public class DataCenter {
 		
 		//Construire les rangées
 		for(int i=0; i<nb_rangee; i++){
-			Rangee rangee = new Rangee(i);
+			Rangee rangee = new Rangee(i, nb_empl);
 			rangees.add(rangee);
 		}
 		
@@ -47,6 +48,11 @@ public class DataCenter {
 			indisponibles.add(pos);
 			//Ajout de l'emplacement pour la rangée
 			rangees.get(pos.rangee).addIndisponible(pos.emplacement);
+		}
+
+		for(int i=0; i<nb_rangee; i++){
+			rangees.get(i).buildSlots();
+			allSlots.addAll(rangees.get(i).slots);
 		}
 		
 		for (int i = 0 ; i < nb_servers ; ++i) {
@@ -73,8 +79,19 @@ public class DataCenter {
 					System.out.print(".");
 			}
 			System.out.print(" " + String.valueOf(indisp.size()));
+			
+			for (Slot s : r.slots) {
+				System.out.print(" (" + String.valueOf(s.position.rangee) + ", " + String.valueOf(s.position.emplacement) + ", " + String.valueOf(s.taille) + ")");
+			}
 			System.out.print("\n");
 		}
+
+		/*
+		for (Slot s : allSlots) {
+			System.out.print("(" + String.valueOf(s.position.rangee) + ", " + String.valueOf(s.position.emplacement) + ", " + String.valueOf(s.taille) + ")");
+			System.out.print("\n");
+		}
+		//*/
 	}
 
 }

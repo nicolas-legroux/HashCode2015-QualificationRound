@@ -7,10 +7,11 @@ public class Test {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		DataCenter input = new DataCenter();
+		DataCenter center = new DataCenter();
 		try {
-			input.load("data/dc.in");
-			input.print();
+			center.load("data/dc.in");
+			center.print();
+			Allocation alloc = Repartition.calcule(center);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -7,14 +7,18 @@ import java.util.*;
 
 public class Rangee {
 	private int id;
+	/*
 	private int group = -1;	
 	private int taille;
-	private Set<Integer> indisponibles;
-	public int[] repartitionServeurs;	
+	//*/
+	private SortedSet<Integer> indisponibles;
+	//public int[] repartitionServeurs;
+	public List<Slot> slots;
 	
 	Rangee(int _id, int _taille){
 		id = _id;	
-		indisponibles = new HashSet<Integer>();
+		indisponibles = new TreeSet<Integer>();
+		/*
 		taille = _taille;
 		repartitionServeurs = new int[taille];
 		
@@ -22,17 +26,30 @@ public class Rangee {
 			//emplacement libre
 			repartitionServeurs[i] = -1;
 		}
+		//*/
+
+		slots = new LinkedList<Slot>();
 	}
-	
+	/*
 	void setGroup(int _group){
 		group = _group;
 	}
+	//*/
 	
 	void addIndisponible(int i){
-		repartitionServeurs[i] = -2;
+		//repartitionServeurs[i] = -2;
 		indisponibles.add(i);		
 	}
 	
+	void buildSlots() {
+		int current = 0;
+		for (Integer i : indisponibles) {
+			slots.add(new Slot(new Position(id, current), i - current));
+			current = i + 1;
+		}
+	}
+	
+	/*
 	int getId(){
 		return id;
 	}
@@ -57,6 +74,7 @@ public class Rangee {
 		
 		return true;
 	}
+	//*/
 	
 	Set<Integer> getIndisponibles(){
 		return indisponibles;
