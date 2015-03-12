@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -13,6 +14,11 @@ public class DataCenter {
 	int nb_groups;
 	int nb_servers;
 	List<Server> servers;
+	
+	public DataCenter() {
+		indisponibles = new LinkedList<Position>();
+		servers = new LinkedList<Server>();
+	}
 	
 	void load(String filename) throws IOException {
 		BufferedReader data = new BufferedReader(new FileReader(filename));
@@ -43,8 +49,7 @@ public class DataCenter {
 			servers.add(serv);
 		}		
 		
-		
-		
+		data.close();
 	}
 
 }
