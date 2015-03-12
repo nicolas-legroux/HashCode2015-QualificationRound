@@ -14,6 +14,7 @@ public class DataCenter {
 	int nb_groups;
 	int nb_servers;
 	List<Server> servers;
+	List<Rangee> rangees = new LinkedList<Rangee>();
 	
 	public DataCenter() {
 		indisponibles = new LinkedList<Position>();
@@ -29,6 +30,12 @@ public class DataCenter {
 		nb_indisp=Integer.parseInt(ParsedData[2]);
 		nb_groups=Integer.parseInt(ParsedData[3]);
 		nb_servers=Integer.parseInt(ParsedData[4]);
+		
+		//Construire les rangées
+		for(int i=0; i<nb_rangee; i++){
+			Rangee rangee = new Rangee(i);
+			rangees.add(rangee);
+		}		
 		
 		ldata=data.readLine();
 		int compt=1;
@@ -47,7 +54,7 @@ public class DataCenter {
 			serv.capacite=Integer.parseInt(temp[1]);
 			
 			servers.add(serv);
-		}		
+		}	
 		
 		data.close();
 	}

@@ -1,14 +1,13 @@
-import java.util.List;
 import java.util.*;
 
 public class Rangee {
 	private int id;
 	private int group = -1;	
-	private List<Integer> indisponibles;
+	private Set<Integer> indisponibles;
 	
 	Rangee(int _id){
 		id = _id;	
-		indisponibles = new LinkedList<Integer>();
+		indisponibles = new HashSet<Integer>();
 	}
 	
 	void setGroup(int _group){
@@ -27,7 +26,7 @@ public class Rangee {
 		return group;
 	}
 	
-	List<Integer> getIndisponibles(){
+	Set<Integer> getIndisponibles(){
 		return indisponibles;
 	}
 }
