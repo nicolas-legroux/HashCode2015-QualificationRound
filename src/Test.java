@@ -13,6 +13,8 @@ public class Test {
 			center.print();
 			Allocation alloc = Repartition.calcule(center);
 			alloc.save("results/result.out");
+			RepartitionServeursDansGroupe rep = new RepartitionServeursDansGroupe(center);
+			rep.repartir();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
