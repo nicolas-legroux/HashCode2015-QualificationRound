@@ -37,7 +37,9 @@ public class Coloriage {
 	}
 	
 	static void scoredColoriage(Allocation allocation) {
-		int[] scores = new int[allocation.problem.nb_groups];
+		//int[] scores = new int[allocation.problem.nb_groups];
+		int[] total = new int[allocation.problem.nb_groups];
+		int[] delta = new int[allocation.problem.nb_groups];
 		int[][] contains = new int[allocation.problem.nb_groups][allocation.problem.nb_rangee];
 
 		Collections.sort(allocation.problem.servers, new CompareServers());
@@ -48,12 +50,19 @@ public class Coloriage {
 				for (int i = 1 ; i < allocation.problem.nb_groups ; ++i) {
 					if (contains[i][e.position.rangee] < contains[best][e.position.rangee])
 						best = i;
-					else if (contains[i][e.position.rangee] == contains[best][e.position.rangee] && scores[i] < scores[best])
-						best = i;
+					else if (contains[i][e.position.rangee] == contains[best][e.position.rangee]) {
+						int score_i = total[i] - Math.max(delta[i], server.capacite);
+						int score_best = total[best] - Math.max(delta[best], server.capacite);
+						if (score_i < score_best)
+							best = i;
+					}
 				}
 			
 				e.groupe = best;
-				scores[best] += server.capacite;
+				total[best] += server.capacite;
+				if (server.capacite > delta[best])
+					delta[best] = server.capacite;
+				//scores[best] = total[best] - delta[best];
 				contains[best][e.position.rangee] += 1;
 			}
 		}

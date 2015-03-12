@@ -6,6 +6,10 @@ public class Server {
 		this.taille = taille;
 		this.capacite = capacite;
 		score = capacite / (double)taille;
+		/*
+		if (capacite > 80)
+			score = 0;
+		//*/
 	}
 	
 	int id;
