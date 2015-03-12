@@ -54,6 +54,8 @@ public class Rangee {
 		for(int i=0; i< s.taille; i++){
 			repartitionServeurs[emplacement+i] = s.id;
 		}
+		
+		return true;
 	}
 	
 	Set<Integer> getIndisponibles(){
