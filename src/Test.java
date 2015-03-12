@@ -10,6 +10,7 @@ public class Test {
 		DataCenter input = new DataCenter();
 		try {
 			input.load("data/dc.in");
+			input.print();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

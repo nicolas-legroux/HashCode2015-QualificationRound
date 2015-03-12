@@ -51,5 +51,14 @@ public class DataCenter {
 		
 		data.close();
 	}
+	
+	void print() {
+		for (int i = 0 ; i < nb_rangee ; ++i) {
+			for (int j = 0 ; j < nb_empl ; ++j) {
+				System.out.print(".");
+			}
+			System.out.print("\n");
+		}
+	}
 
 }
